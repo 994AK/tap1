@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tab</title>
+    <style>
+      .container {
+        max-width: 800px;
+        margin: 30px auto;
+        border-radius: 4px;
+        box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.3);
+        padding: 16px;
+      }
+
+      .tabs .tab-header {
+        position: relative;
+        display: flex;
+        font-size: 13px;
+        color: #303030;
+        line-height: 2;
+        font-weight: 500;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .tabs .tab-item {
+        margin-right: 30px;
+        cursor: pointer;
+      }
+
+      .tabs .line {
+        position: absolute;
+        transform: translateX(0);
+        top: 100%;
+        width: 50px;
+        height: 2px;
+        background: #409eff;
+        transition: all 0.3s;
+      }
+
+      .tabs .tab-item.active {
+        color: #409eff;
+      }
+
+      .tabs .tab-panel {
+        padding: 16px 0;
+        font-size: 14px;
+        display: none;
+      }
+
+      .tabs .tab-panel.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>活动页面</h2>
+      <div class="tabs">
+        <div class="tab-header">
+          <span class="tab-item active">最新活动</span>
+          <span class="tab-item">消费活动</span>
+          <span class="tab-item">理财活动</span>
+          <span class="tab-item">其他活动</span>
+          <span class="line"></span>
+        </div>
+        <div class="tab-content">
+          <div class="tab-panel active">
+            <ul>
+              <li><a href="#">活动1</a></li>
+              <li><a href="#">活动2</a></li>
+              <li><a href="#">活动3</a></li>
+            </ul>
+          </div>
+          <div class="tab-panel">  <ul>
+            <li><a href="#">消费活动1</a></li>
+            <li><a href="#">消费活动2</a></li>
+            <li><a href="#">消费活动3</a></li>
+          </ul></div>
+          <div class="tab-panel"><ul>
+            <li><a href="#">理财活动1</a></li>
+            <li><a href="#">理财活动2</a></li>
+            <li><a href="#">理财活动3</a></li>
+          </ul></div>
+          <div class="tab-panel">
+            <ul>
+              <li><a href="#">其他活动1</a></li>
+              <li><a href="#">其他活动2</a></li>
+              <li><a href="#">其他活动3</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      class Tabs {
+        constructor($container) {
+          this.$container = $container; //ID
+          this.$$tabItems = $container.querySelectorAll(".tab-item");
+          this.$$tabPanels = $container.querySelectorAll(".tab-panel");
+          this.$line = $container.querySelector(".line");
+
+          this.init();
+          this.bind();
+        }
+
+        init() {
+          this.$line.style.width = this.$$tabItems[0].offsetWidth;
+        }
+
+        bind() {
+          let self = this;
+          this.$$tabItems.forEach(($tab) => {
+            $tab.onclick = function () {
+              self.$$tabItems.forEach(($tab) =>
+                $tab.classList.remove("active")
+              );
+              this.classList.add("active");
+
+              //移动动画
+              self.$line.style.width = this.offsetWidth + "px"; //宽度
+              self.$line.style.transform = `translateX(${this.offsetLeft}px)`; //位子
+
+              let index = [...self.$$tabItems].indexOf(this);
+              self.$$tabPanels.forEach(($tab) =>
+                $tab.classList.remove("active")
+              );
+              self.$$tabPanels[index].classList.add("active");
+            };
+          });
+        }
+      }
+
+      new Tabs(document.querySelector('.tabs'));
+    </script>
+  </body>
+</html>
