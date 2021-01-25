@@ -62,55 +62,154 @@
             height: auto;
             padding-bottom: 16px;
         }
+
+        .collapse .item.active .item-content .item-mian {
+            display: flex;
+            /*justify-content: ;*/
+            align-items: center;
+
+        }
+
+        .item-mian span a {
+            width: 15vh;
+            height: 10vh;
+            display: inline-block;
+            background: url("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fa4.att.hudong.com%2F27%2F67%2F01300000921826141299672233506.jpg&refer=http%3A%2F%2Fa4.att.hudong.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1614133028&t=6765a673a86540300ac0f6b02373ae93") repeat-x;
+            background-size: cover;
+        }
+
+        .item-mian ul {
+
+            margin: 10px;
+            padding: 0;
+            list-style: none;
+        }
     </style>
 </head>
 <body>
 <div class="container">
     <h2>活动面板</h2>
     <div class="collapse">
-        <div class="item">
+        <div class="item  active">
             <div class="item-header">最新活动</div>
             <div class="item-content">
-                <a href="#">活动链接 或者图片</a><br/>
+                <div class="item-mian">
+                    <span><a href="#"></a></span>
+                    <div>
+                        <ul>
+                            <li>姓名:二哈</li>
+                            <li>性别:不知道</li>
+                            <li>爱好:跑来跑去</li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="item-mian">
+                    <span><a href="#"></a></span>
+                    <div>
+                        <ul>
+                            <li>姓名:二哈1</li>
+                            <li>性别:不知道</li>
+                            <li>爱好:消费</li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="item-mian">
+                    <span><a href="#"></a></span>
+                    <div>
+                        <ul>
+                            <li>姓名:二哈2</li>
+                            <li>性别:不知道</li>
+                            <li>爱好:理财</li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="item-mian">
+                    <span><a href="#"></a></span>
+                    <div>
+                        <ul>
+                            <li>姓名:二哈3</li>
+                            <li>性别:不知道</li>
+                            <li>爱好:其他</li>
+                        </ul>
+                    </div>
+
+                </div>
             </div>
         </div>
-        <div class="item active">
+        <div class="item">
             <div class="item-header">消费活动</div>
             <div class="item-content">
-                <a href="#">活动链接 或者图片</a><br/>
+                    <div class="item-mian">
+                        <span><a href="#"></a></span>
+                        <div>
+                            <ul>
+                                <li>姓名:二哈1</li>
+                                <li>性别:不知道</li>
+                                <li>爱好:消费</li>
+                            </ul>
+                        </div>
+
+                    </div>
             </div>
         </div>
         <div class="item">
             <div class="item-header">理财活动</div>
             <div class="item-content">
-                <a href="#">活动链接 或者图片</a><br/>
+                <div class="item-mian">
+                    <span><a href="#"></a></span>
+                    <div>
+                        <ul>
+                            <li>姓名:二哈2</li>
+                            <li>性别:不知道</li>
+                            <li>爱好:理财</li>
+                        </ul>
+                    </div>
+
+                </div>
             </div>
         </div>
         <div class="item">
             <div class="item-header">其他活动</div>
             <div class="item-content">
-                <a href="#">活动链接 或者图片</a><br/>
+                <div class="item-mian">
+                    <span><a href="#"></a></span>
+                    <div>
+                        <ul>
+                            <li>姓名:二哈3</li>
+                            <li>性别:不知道</li>
+                            <li>爱好:其他</li>
+                        </ul>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
 </div>
 <script>
-    class  Collapse {
-        constructor($container,type = 1) {
+    class Collapse {
+        constructor($container, type = 1) {
             this.$container = $container;
             this.$$items = $container.querySelectorAll(".item");
+            this.$$iteMian = $container.querySelectorAll(".item-mian")
             this.type = type;
 
             this.bind()
 
+            this.inof();
+
         }
-        bind(){
+
+        bind() {
             let self = this
             this.$$items.forEach($item => {
-                $item.onclick = function() {
-                    if(self.type === 2) {
+                $item.onclick = function () {
+                    if (self.type === 2) {
                         this.classList.toggle('active')
-                    } else if(self.type === 1) {
+                    } else if (self.type === 1) {
                         self.$$items.forEach($item => $item.classList.remove('active'))
                         this.classList.add('active')
                     }
@@ -118,6 +217,13 @@
                 }
             })
         }
+
+        inof() {
+
+
+        }
+
+
     }
 
 
