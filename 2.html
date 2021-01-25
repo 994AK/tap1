@@ -191,7 +191,7 @@
 </div>
 <script>
     class Collapse {
-        constructor($container, type = 1) {
+        constructor($container, type = 2) {
             this.$container = $container;
             this.$$items = $container.querySelectorAll(".item");
             this.$$iteMian = $container.querySelectorAll(".item-mian")
@@ -199,14 +199,13 @@
 
             this.bind()
 
-            this.inof();
-
         }
 
         bind() {
             let self = this
             this.$$items.forEach($item => {
                 $item.onclick = function () {
+
                     if (self.type === 2) {
                         this.classList.toggle('active')
                     } else if (self.type === 1) {
@@ -218,16 +217,12 @@
             })
         }
 
-        inof() {
-
-
-        }
 
 
     }
 
 
-    new Collapse(document.querySelectorAll(".collapse")[0]);
+    new Collapse(document.querySelectorAll(".collapse",2)[0]);
 
 </script>
 </body>
